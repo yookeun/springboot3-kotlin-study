@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path:
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:16691/STUDY_TEST?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: test
+#    url: jdbc:mysql://localhost:3306/STUDY_TEST?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8
+#    username: root
+#    password: 1234
+    hikari:
+      max-lifetime: 30000
+      maximum-pool-size: 10
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+        show_sql: true
+        format_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 16694
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+
+jwt.secret-key: 89e94aae-c3a8-4046-a94a-aec3a8b046fb
+jwt.access-token-expired-min: 30
+jwt.refresh-token-expired-days: 7
+encrpyt-secretKey: 2e98456c-6bf0-11ee-8446-0242ac110004
