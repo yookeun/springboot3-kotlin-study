@@ -26,4 +26,7 @@ class LoginController(private val memberService: MemberService) {
     fun create(@RequestBody memberRequestDto: MemberRequestDto): ResponseEntity<MemberDto> {
         return ResponseEntity.ok(memberService.saveMember(memberRequestDto))
     }
+
+
+
 }

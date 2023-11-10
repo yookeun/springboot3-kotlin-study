@@ -15,8 +15,8 @@ data class MemberDto(
     var authorities: List<Authority>
 )
 
-fun Member.fromEntity(): MemberDto {
-    val memberDto = MemberDto(
+fun Member.toDto(): MemberDto {
+    return MemberDto(
         id = id,
         userId = userId,
         password = password,
@@ -25,8 +25,6 @@ fun Member.fromEntity(): MemberDto {
         phone = phone,
         authorities = getAuthorities()
     )
-
-    return memberDto
 }
 
 data class MemberRequestDto(
@@ -60,7 +58,7 @@ data class MemberAuthorityDto (
     var authority: Authority
 )
 
-fun MemberAuthority.fromEntity(memberAuthority: MemberAuthority): MemberAuthorityDto = MemberAuthorityDto(
+fun MemberAuthority.toDto(memberAuthority: MemberAuthority): MemberAuthorityDto = MemberAuthorityDto(
     authority = memberAuthority.authority
 )
 
