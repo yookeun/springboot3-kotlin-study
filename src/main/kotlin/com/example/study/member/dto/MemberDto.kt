@@ -4,6 +4,7 @@ import com.example.study.member.domain.Member
 import com.example.study.member.domain.MemberAuthority
 import com.example.study.member.enums.Authority
 import com.example.study.member.enums.Gender
+import jakarta.validation.constraints.NotBlank
 
 data class MemberDto(
     val id: Long?,
@@ -28,10 +29,19 @@ fun Member.toDto(): MemberDto {
 }
 
 data class MemberRequestDto(
+
+    @field:NotBlank(message = "required")
     val userId: String,
-    val password: String,
+
+    @field:NotBlank(message = "required")
+    var password: String,
+
+    @field:NotBlank(message = "required")
     val name: String,
+
+    @field:NotBlank(message = "required")
     val gender: Gender,
+
     val phone: String,
     val authorities: List<MemberAuthorityRequestDto>
 ) {
@@ -54,11 +64,18 @@ data class MemberAuthorityRequestDto(
     )
 }
 
-data class MemberAuthorityDto (
+data class MemberAuthorityDto(
     var authority: Authority
+)
+
+data class MemberSearchCondition(
+    var searchName: String = "",
+    var gender: String = ""
 )
 
 fun MemberAuthority.toDto(memberAuthority: MemberAuthority): MemberAuthorityDto = MemberAuthorityDto(
     authority = memberAuthority.authority
 )
+
+
 

@@ -1,11 +1,13 @@
 package com.example.study.member.domain
 
 import com.example.study.common.BaseEntity
+import com.example.study.converter.EncDecConverter
 import com.example.study.member.dto.MemberAuthorityRequestDto
 import com.example.study.member.enums.Authority
 import com.example.study.member.enums.Gender
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
+import jakarta.persistence.Convert
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -41,6 +43,7 @@ class Member(
     var gender: Gender,
 
     @Column(name = "PHONE")
+    @Convert(converter = EncDecConverter::class)
     var phone: String,
 
     @OneToMany(

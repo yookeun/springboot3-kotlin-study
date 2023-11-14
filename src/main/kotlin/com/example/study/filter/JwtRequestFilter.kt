@@ -35,12 +35,11 @@ class JwtRequestFilter(
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        filterChain: FilterChain
-    ) {
-        val authorizationHeader = request.getHeader("Authorization")
-        var username = ""
-        var token = ""
+        filterChain: FilterChain) {
 
+        val authorizationHeader = request.getHeader("Authorization")
+        val username: String
+        var token = ""
 
         //Parse the token attached below the Bearer part of the Header.
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {

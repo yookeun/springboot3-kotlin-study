@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
+    kotlin("kapt") version "1.8.22"
 }
 
 allOpen {
@@ -29,7 +30,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.h2database:h2")
@@ -43,14 +46,15 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     //add querydsl settings
-    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
-    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+    implementation ("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt ("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    kapt ("jakarta.annotation:jakarta.annotation-api")
+    kapt ("jakarta.persistence:jakarta.persistence-api")
 
     //redis
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
 }
+
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

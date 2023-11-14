@@ -1,11 +1,13 @@
 package com.example.study.handler
 
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
 import java.nio.ByteBuffer
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
+@Component
 class EncryptHandler(@Value("\${encrpyt-secretKey}") var secretKey: String) {
 
     private fun generateKey(): String {

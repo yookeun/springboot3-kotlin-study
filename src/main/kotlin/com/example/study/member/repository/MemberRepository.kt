@@ -6,7 +6,9 @@ import java.util.*
 
 
 @org.springframework.stereotype.Repository
-interface MemberRepository: Repository<Member, Long> {
+interface MemberRepository: Repository<Member, Long>, MemberRepositoryCustom {
     fun save(member: Member): Member
     fun findByUserId(userId: String): Optional<Member>
+    fun findById(id: Long): Optional<Member>
+    fun delete(member: Member)
 }

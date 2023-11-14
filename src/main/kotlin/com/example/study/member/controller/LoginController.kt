@@ -1,9 +1,12 @@
 package com.example.study.member.controller
 
+import com.example.study.member.dto.LoginDto
+import com.example.study.member.dto.LoginRequestDto
 import com.example.study.member.dto.MemberDto
 import com.example.study.member.dto.MemberRequestDto
 import com.example.study.member.service.MemberService
 import io.github.oshai.kotlinlogging.KotlinLogging
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -27,6 +30,10 @@ class LoginController(private val memberService: MemberService) {
         return ResponseEntity.ok(memberService.saveMember(memberRequestDto))
     }
 
+    @PostMapping("/login")
+    fun login(@Valid @RequestBody loginRequestDto: LoginRequestDto): ResponseEntity<LoginDto> {
+        return ResponseEntity.ok(memberService.loginProcess(loginRequestDto))
+    }
 
 
 }
