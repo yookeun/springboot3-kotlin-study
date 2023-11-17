@@ -4,6 +4,7 @@ import com.example.study.member.dto.LoginDto
 import com.example.study.member.dto.LoginRequestDto
 import com.example.study.member.dto.MemberDto
 import com.example.study.member.dto.MemberRequestDto
+import com.example.study.member.dto.RefreshTokenDto
 import com.example.study.member.service.MemberService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.validation.Valid
@@ -33,6 +34,13 @@ class LoginController(private val memberService: MemberService) {
     @PostMapping("/login")
     fun login(@Valid @RequestBody loginRequestDto: LoginRequestDto): ResponseEntity<LoginDto> {
         return ResponseEntity.ok(memberService.loginProcess(loginRequestDto))
+    }
+
+    @PostMapping("/token/reissue")
+    fun refreshToken(@Valid @RequestBody refreshTokenDto: RefreshTokenDto): ResponseEntity<Map<String, String>> {
+        val result = HashMap<String, String>()
+        result.put("accessToken", memberService.getRenewAccessToken(refreshTokenDto))
+        return ResponseEntity.ok(result)
     }
 
 

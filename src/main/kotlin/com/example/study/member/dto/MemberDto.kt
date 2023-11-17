@@ -54,6 +54,21 @@ data class MemberRequestDto(
     )
 }
 
+data class MemberUpdateDto(
+
+    @field:NotBlank(message = "required")
+    var password: String,
+
+    @field:NotBlank(message = "required")
+    val name: String,
+
+    @field:NotBlank(message = "required")
+    val gender: Gender,
+
+    val phone: String,
+    val authorities: List<MemberAuthorityRequestDto>
+)
+
 data class MemberAuthorityRequestDto(
     var authority: Authority,
     var member: Member?
