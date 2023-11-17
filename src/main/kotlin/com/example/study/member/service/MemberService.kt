@@ -123,7 +123,6 @@ class MemberService(
         try {
             optionalUserTokenInfo = redisTokenHandler.findSavedAccessToken(refreshTokenDto.userId)
         } catch (e: JsonProcessingException) {
-            logger.error { "111=============$e" }
             throw RuntimeException(e)
         }
 
