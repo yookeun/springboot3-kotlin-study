@@ -88,8 +88,8 @@ data class MemberSearchCondition(
     var gender: String = ""
 )
 
-fun MemberAuthority.toDto(memberAuthority: MemberAuthority): MemberAuthorityDto = MemberAuthorityDto(
-    authority = memberAuthority.authority
+fun MemberAuthority.toDto(): MemberAuthorityDto = MemberAuthorityDto(
+    authority = authority
 )
 
 
